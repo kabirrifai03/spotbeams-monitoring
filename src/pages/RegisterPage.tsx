@@ -31,73 +31,10 @@ const RegisterPage: React.FC = () => {
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const serverError = err.response?.data;
-        setError(
-          serverError?.error ||
+          setError(
+            serverError?.error ||
             "Register gagal. Periksa kembali username dan password Anda."
-        );
-      } else {
-        setError("Tidak dapat terhubung ke server. Silakan coba lagi nanti.");
-      }
-    }
-  };
-
-  const navigate = useNavigate();
-  const url = process.env.REACT_APP_API_URL;
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const response = await axios.post(url + "user/register", {
-        username,
-        password,
-      });
-      console.log(response);
-
-      if (response.status == 201) {
-        navigate("/map-view");
-      } else {
-        setError(response.data.message || "Username atau password salah!");
-      }
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const serverError = err.response?.data;
-        setError(
-          serverError?.message ||
-            "Login gagal. Periksa kembali username dan password Anda."
-        );
-      } else {
-        setError("Tidak dapat terhubung ke server. Silakan coba lagi nanti.");
-      }
-    }
-  };
-  const navigate = useNavigate();
-  const url = process.env.REACT_APP_API_URL;
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const response = await axios.post(url + "user/register", {
-        username,
-        password,
-      });
-      console.log(response);
-
-      if (response.status == 201) {
-        navigate("/map-view");
-      } else {
-        setError(response.data.message || "Username atau password salah!");
-      }
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const serverError = err.response?.data;
-        setError(
-          serverError?.message ||
-            "Login gagal. Periksa kembali username dan password Anda."
-        );
+          );
       } else {
         setError("Tidak dapat terhubung ke server. Silakan coba lagi nanti.");
       }
